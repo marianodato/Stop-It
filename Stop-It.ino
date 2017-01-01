@@ -57,11 +57,11 @@ bool scroll = true;
 
 void setup()
 {
-	  lcd.begin(16, 2);
+	lcd.begin(16, 2);
   	lcd.setCursor(0,1);
   	lcd.print("    LEVEL: 1");
   
- 	  pinMode(greenLEDPin1,OUTPUT);
+ 	pinMode(greenLEDPin1,OUTPUT);
   	pinMode(greenLEDPin2,OUTPUT);
   	pinMode(redLEDPin3,OUTPUT);
   	pinMode(greenLEDPin4,OUTPUT);
@@ -79,7 +79,7 @@ void setup()
 
 void win()
 {
-	  int i=0;
+	int i=0;
 
   	lcd.clear();
   	lcd.setCursor(0,0);
@@ -90,29 +90,29 @@ void win()
 
   	while (i<25)
   	{
-     	digitalWrite(greenLEDPin1,HIGH);
-     	digitalWrite(greenLEDPin2,LOW);
-     	digitalWrite(redLEDPin3,HIGH);
-     	digitalWrite(greenLEDPin4,LOW);
-     	digitalWrite(greenLEDPin5,HIGH);
+		digitalWrite(greenLEDPin1,HIGH);
+		digitalWrite(greenLEDPin2,LOW);
+		digitalWrite(redLEDPin3,HIGH);
+		digitalWrite(greenLEDPin4,LOW);
+		digitalWrite(greenLEDPin5,HIGH);
 
-     	delay(100);
+		delay(100);
 
-     	digitalWrite(greenLEDPin1,LOW);
-     	digitalWrite(greenLEDPin2,HIGH);
-     	digitalWrite(redLEDPin3,LOW);
-     	digitalWrite(greenLEDPin4,HIGH);
-     	digitalWrite(greenLEDPin5,LOW);
+		digitalWrite(greenLEDPin1,LOW);
+		digitalWrite(greenLEDPin2,HIGH);
+		digitalWrite(redLEDPin3,LOW);
+		digitalWrite(greenLEDPin4,HIGH);
+		digitalWrite(greenLEDPin5,LOW);
 
-     	delay(100); 
+		delay(100); 
 
-     	i++; 
+     		i++; 
   	}
 }
 
 void lose()
 {
-	  int i=0;
+	int i=0;
 
   	lcd.clear();
   	lcd.setCursor(0,0);
@@ -124,15 +124,15 @@ void lose()
   	
   	while (i<25)
   	{
-     	digitalWrite(greenLEDPin1,LOW);
-     	digitalWrite(greenLEDPin2,LOW);
-     	digitalWrite(redLEDPin3,LOW);
-     	digitalWrite(greenLEDPin4,LOW);
-     	digitalWrite(greenLEDPin5,LOW);
+		digitalWrite(greenLEDPin1,LOW);
+		digitalWrite(greenLEDPin2,LOW);
+		digitalWrite(redLEDPin3,LOW);
+		digitalWrite(greenLEDPin4,LOW);
+		digitalWrite(greenLEDPin5,LOW);
 
-     	delay(100);
+		delay(100);
 
-     	i++; 
+		i++; 
   	}
 }
 
@@ -159,8 +159,8 @@ void inicializate(unsigned long newDelayTime)
   	if (delayTime==1000)
   	{
    		index = -size;
-    	scroll = true;
-    	timeScroll = 0;
+		scroll = true;
+		timeScroll = 0;
   	}
   
   	digitalWrite(greenLEDPin1,LOW);
@@ -173,14 +173,14 @@ void inicializate(unsigned long newDelayTime)
 void move()
 {
   	if (index >= size + spaces)
-    	index = 0;
+    		index = 0;
 
   	for (int i = 0; i < 16; i++) 
   	{
-    	if ((index + i) % (size + spaces) < sizeof(text)-1)
-      		buf[i] = text[(i + index) % (size + spaces)];
-    	else
-      		buf[i] = ' ';
+		if ((index + i) % (size + spaces) < sizeof(text)-1)
+			buf[i] = text[(i + index) % (size + spaces)];
+		else
+			buf[i] = ' ';
   	}
 
   	lcd.setCursor(0,0);
@@ -193,19 +193,19 @@ void loop()
 {
   	if (scroll)
   	{
-    	timeScroll=millis();
-    	scroll = false;
+		timeScroll=millis();
+		scroll = false;
   	}
 
   	if ((millis() - timeScroll) >= delayTime4)
   	{
-    	move();
-    	scroll = true;
+		move();
+		scroll = true;
   	}
   
   	if (switchState == LOW)
   	{
-    	switchState = digitalRead(switchPin);
+    		switchState = digitalRead(switchPin);
 
     	if (switchState == HIGH)
       		tone(piezoPin,sound2,delayTime2);
@@ -213,113 +213,113 @@ void loop()
   
   	if (start || (greenLEDPin5On && (millis() - timeGreenLEDPin5Start) >= delayTime))
   	{
-    	if (switchState == HIGH)
-    	{
-       		switchState = LOW;
-       		lose();
-       		level = 1;
-       		tone(piezoPin,sound,delayTime2);
-       		inicializate(1000);
-    	}else
-    	{
-      		start = false;
-      		greenLEDPin5On = false;
-      		digitalWrite(greenLEDPin5,LOW);
-      		digitalWrite(greenLEDPin1,HIGH);
+		if (switchState == HIGH)
+		{
+			switchState = LOW;
+			lose();
+			level = 1;
+			tone(piezoPin,sound,delayTime2);
+			inicializate(1000);
+		}else
+		{
+			start = false;
+			greenLEDPin5On = false;
+			digitalWrite(greenLEDPin5,LOW);
+			digitalWrite(greenLEDPin1,HIGH);
 
-      		if (!greenLEDPin1On)    
-         		timeGreenLEDPin1Start = millis();
+			if (!greenLEDPin1On)    
+				timeGreenLEDPin1Start = millis();
 
-      		greenLEDPin1On = true;
-    	}
+			greenLEDPin1On = true;
+		}
       
   	}else if (greenLEDPin1On && (millis() - timeGreenLEDPin1Start) >= delayTime)
   	{
-    	if (switchState == HIGH)
-    	{
-       		switchState = LOW;
-      		lose();
-       		level = 1;
-       		tone(piezoPin,sound,delayTime2);
-       		inicializate(1000);
-    	}else
-    	{
-      		greenLEDPin1On = false;
-      		digitalWrite(greenLEDPin1,LOW);
-      		digitalWrite(greenLEDPin2,HIGH);
+		if (switchState == HIGH)
+		{
+			switchState = LOW;
+			lose();
+			level = 1;
+			tone(piezoPin,sound,delayTime2);
+			inicializate(1000);
+		}else
+		{
+			greenLEDPin1On = false;
+			digitalWrite(greenLEDPin1,LOW);
+			digitalWrite(greenLEDPin2,HIGH);
 
-      		if (!greenLEDPin2On) 
-        		timeGreenLEDPin2Start = millis();
+			if (!greenLEDPin2On) 
+				timeGreenLEDPin2Start = millis();
 
-      		greenLEDPin2On = true;
-    	}
+			greenLEDPin2On = true;
+		}
   	}else if (greenLEDPin2On && (millis() - timeGreenLEDPin2Start) >= delayTime)
   	{
-    	if (switchState == HIGH)
-    	{
-       		switchState = LOW;
-       		lose();
-       		level = 1;
-       		tone(piezoPin,sound,delayTime2);
-       		inicializate(1000);
-    	}else
-    	{
-      		greenLEDPin2On = false;
-      		digitalWrite(greenLEDPin2,LOW);
-      		digitalWrite(redLEDPin3,HIGH);
+		if (switchState == HIGH)
+		{
+			switchState = LOW;
+			lose();
+			level = 1;
+			tone(piezoPin,sound,delayTime2);
+			inicializate(1000);
+		}else
+		{
+			greenLEDPin2On = false;
+			digitalWrite(greenLEDPin2,LOW);
+			digitalWrite(redLEDPin3,HIGH);
 
-      		if (!redLEDPin3On) 
-        		timeRedLEDPin3Start = millis();
+			if (!redLEDPin3On) 
+				timeRedLEDPin3Start = millis();
 
-      		redLEDPin3On = true;
-    	}
+			redLEDPin3On = true;
+		}
   	}else if (redLEDPin3On && (millis() - timeRedLEDPin3Start) >= delayTime)
   	{
-    	if (switchState == HIGH)
-    	{
-       		switchState = LOW;
+		if (switchState == HIGH)
+		{
+			switchState = LOW;
 
-       		if (delayTime-100 > 0)
-       		{
-          		level = level + 1;
-          		inicializate(delayTime-100);
-       		}else
-       		{
-          		win();
-          		level = 1;
-          		tone(piezoPin,sound,delayTime2);
-          		inicializate(1000);
-       		}
-    	}else
-    	{
-      		redLEDPin3On = false;
-      		digitalWrite(redLEDPin3,LOW);
-      		digitalWrite(greenLEDPin4,HIGH);
+			if (delayTime-100 > 0)
+			{
+				level = level + 1;
+				inicializate(delayTime-100);
+			}else
+			{
+				win();
+				level = 1;
+				tone(piezoPin,sound,delayTime2);
+				inicializate(1000);
+			}
+		}else
+		{
+			redLEDPin3On = false;
+			digitalWrite(redLEDPin3,LOW);
+			digitalWrite(greenLEDPin4,HIGH);
 
-      		if (!greenLEDPin4On) 
-        		timeGreenLEDPin4Start = millis();
+			if (!greenLEDPin4On) 
+				timeGreenLEDPin4Start = millis();
 
-      		greenLEDPin4On = true;
-    	}
+			greenLEDPin4On = true;
+		}
   	}else if (greenLEDPin4On && (millis() - timeGreenLEDPin4Start) >= delayTime)
   	{
-    	if (switchState == HIGH)
-    	{
-       		switchState = LOW;
-       		lose();
-       		level = 1;
-       		tone(piezoPin,sound,delayTime2);
-       		inicializate(1000);
-    	}else
-    	{
-      		greenLEDPin4On = false;
-      		digitalWrite(greenLEDPin4,LOW);
-      		digitalWrite(greenLEDPin5,HIGH);
+		if (switchState == HIGH)
+		{
+			switchState = LOW;
+			lose();
+			level = 1;
+			tone(piezoPin,sound,delayTime2);
+			inicializate(1000);
+		}else
+		{
+			greenLEDPin4On = false;
+			digitalWrite(greenLEDPin4,LOW);
+			digitalWrite(greenLEDPin5,HIGH);
 
-      		if (!greenLEDPin5On) 
-        		timeGreenLEDPin5Start = millis();
+			if (!greenLEDPin5On) 
+				timeGreenLEDPin5Start = millis();
 
-      		greenLEDPin5On = true;
-    	}
+			greenLEDPin5On = true;
+		}
   	} 
 }
