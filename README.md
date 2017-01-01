@@ -12,5 +12,8 @@ A simple version of the Stop-It Arduino LED game.
 
 ## How to Play
 
-- a
-
+- The LEDs light up in sequence. 
+- Your goal is to press the pushbutton when the red led is on. 
+- If you succeed you will pass to the next level where the sequence will be faster. 
+- If you fail you lose the game and return to level 1. 
+- You win the game when you manage to pass all 10 levels.
