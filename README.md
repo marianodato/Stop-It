@@ -17,4 +17,4 @@ A simple version of the Stop-It Arduino LED game.
 - If you succeed you pass to the next level where the sequence goes faster. 
 - If you fail you lose the game and return to level 1. 
 - You win the game when you manage to pass all 10 levels.
-- You can simulate the game here: https://circuits.io/circuits/3616666-stop-it/
+- You can run a simulation of the game here: https://circuits.io/circuits/3616666-stop-it/
