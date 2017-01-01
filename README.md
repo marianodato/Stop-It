@@ -2,6 +2,6 @@
 A simple version of the Stop-It Arduino LED game.
 
 ## Connectios
-![alt tag](https://github.com/marianodato/Stop-It/blob/master/img/Connections.png)
+![alt Connectios](https://github.com/marianodato/Stop-It/blob/master/img/Connections.png)
 
 
