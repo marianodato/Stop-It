@@ -57,11 +57,11 @@ bool scroll = true;
 
 void setup()
 {
-	lcd.begin(16, 2);
+	  lcd.begin(16, 2);
   	lcd.setCursor(0,1);
   	lcd.print("    LEVEL: 1");
   
- 	pinMode(greenLEDPin1,OUTPUT);
+ 	  pinMode(greenLEDPin1,OUTPUT);
   	pinMode(greenLEDPin2,OUTPUT);
   	pinMode(redLEDPin3,OUTPUT);
   	pinMode(greenLEDPin4,OUTPUT);
@@ -79,7 +79,7 @@ void setup()
 
 void win()
 {
-	int i=0;
+	  int i=0;
 
   	lcd.clear();
   	lcd.setCursor(0,0);
@@ -112,7 +112,7 @@ void win()
 
 void lose()
 {
-	int i=0;
+	  int i=0;
 
   	lcd.clear();
   	lcd.setCursor(0,0);
